@@ -111,37 +111,32 @@
   <input class="form-control"  id="myInput" type="text" >
   <br>
   <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Մարզ</th>
-        
-       <!--  <th>Հեռախոս</th>
-        <th>Խնդիր</th> -->
-        <!-- <th>Մանրամասն</th> -->
-      </tr>
-    </thead>
-    <tbody id="myTable">
- @foreach($products as $product)
+    <thead>  
+    
    <form id="carform" action="{{url('insert-engineer-problem')}}" method="post" >
      {{ csrf_field() }}
       <tr>
+        <th>N</th>
         <th>Մարզ</th>
         <th>Համայնք</th>
         <th>Փողոց</th>
+        <th>Շենք</th>
         <th>Բնակարան/Տուն</th>
         <th>Կարգավիճակ</th>
         <th>Հեռախոս</th>
-         
         <th>Խնդիր</th>
         <th>Մանրամասն</th>
       </tr>
     </thead>
-    <tbody id="myTable">
+      @foreach($products as $product)
+    <tbody>
 
       <tr>
+        <td> <input  type="checkbox" name="{{ $product->id}}" value="{{ $product->id}}"></td>
         <td>{{ $product->state }}</td>
         <td>{{ $product->region }}</td>
         <td>{{ $product->street }}</td>
+        <td>{{ $product->building}}</td>
         <td>{{ $product->apartment }}</td>
         <td>{{ $product->status }}</td>
         <td>{{ $product->phone }}</td>
@@ -149,7 +144,10 @@
         <td><button><a href="/{{ $product->id}}">Մանրամասն</a></button></td>
       </tr>
  
-                       <input type="hidden" name="id" value="{{ $product->id}}">
+                      
+         
+  @endforeach 
+     
                 <label   for="status" required> Կարգավիճակ:</label>
                       <select id="status" name="mane" form="carform">
                           @foreach($users as $user)
@@ -157,9 +155,8 @@
                           @endforeach
                       </select>   
                 <input type="submit" name="send" value="Փոխել">
-        </form>      
-  @endforeach       
-  </table>
+                </form>     
+    </thead>   
 </div>
 
 <script>

@@ -14,7 +14,7 @@ class DataController extends Controller
 {
    public function showData(Request $request) {
 
-        $products = Applicationall::where('manwork', '=', 'աշխատակից')->get();
+        $products = Applicationall::where('status', '=', 'Նոր հայտ')->get();
 
         $user = User::where('group', '=', 'Ներտնային սպասարկող')->get();
 
@@ -23,30 +23,32 @@ class DataController extends Controller
 
 
     public function updateinfo(Request $request) {
-    	   echo $mane = $request->input('mane');
-            $id = $request->input('id');
 
-            $applicationall = Applicationall :: find($id);
+        echo $request;
+    	   // echo $mane = $request->input('mane');
+        //     $id = $request->input('id');
 
-            $applicationall->manwork = $request->get('mane');
+        //     $applicationall = Applicationall :: find($id);
+
+        //     $applicationall->manwork = $request->get('mane');
           
 
-            $applicationall->save();
+        //     $applicationall->save();
          
 
 
-        if(ucfirst(Auth()->user()->position) == "Ներտնային սպասարկման մասնագետ"){
+        // if(ucfirst(Auth()->user()->position) == "Ներտնային սպասարկման մասնագետ"){
 
-             $products = Applicationall::where('manwork', '=', 'աշխատակից')->get();
+        //      $products = Applicationall::where('manwork', '=', 'աշխատակից')->get();
 
-        }else if(ucfirst(Auth()->user()->position) ==  "Ներտնային սպասարկման ավագ մասնագետ" )
+        // }else if(ucfirst(Auth()->user()->position) ==  "Ներտնային սպասարկման ավագ մասնագետ" )
 
-        $products = Applicationall::where('manwork', '=', 'աշխատակից')->get();
+        // $products = Applicationall::where('manwork', '=', 'աշխատակից')->get();
 
 
-        $user = User::where('group', '=', 'Ներտնային սպասարկող')->get();
+        // $user = User::where('group', '=', 'Ներտնային սպասարկող')->get();
 
-        return view('tabelall', ['products'=>$products] , ['users'=>$user]);
+        // return view('tabelall', ['products'=>$products] , ['users'=>$user]);
     }
 
 
