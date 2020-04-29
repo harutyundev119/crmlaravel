@@ -129,13 +129,14 @@
   <table id="example" class="display" style="width:100%">
         <thead>
               <tr>
+        <th>N</th>
         <th>Մարզ</th>
         <th>Համայնք</th>
         <th>Փողոց</th>
+        <th>Շենք</th>
         <th>Բնակարան/Տուն</th>
         <th>Կարգավիճակ</th>
-        <th>Հեռախոս</th>
-         
+        <th>Հեռախոս</th>        
         <th>Խնդիր</th>
         <th>Մանրամասն</th>
       </tr>
@@ -143,9 +144,11 @@
         <tbody>
            @foreach($products as $product)
       <tr>
+       <td> <input  type="checkbox" name="id{{ $product->id}}" value="{{ $product->id}}"></td>
         <td>{{ $product->state }}</td>
         <td>{{ $product->region }}</td>
         <td>{{ $product->street }}</td>
+        <td>{{ $product->building}}</td>
         <td>{{ $product->apartment }}</td>
         <td>{{ $product->status }}</td>
         <td>{{ $product->phone }}</td>
@@ -156,13 +159,14 @@
         </tbody>
         <tfoot>
                 <tr>
+         <th>N</th>
         <th>Մարզ</th>
         <th>Համայնք</th>
         <th>Փողոց</th>
+        <th>Շենք</th>
         <th>Բնակարան/Տուն</th>
         <th>Կարգավիճակ</th>
-        <th>Հեռախոս</th>
-         
+        <th>Հեռախոս</th> 
         <th>Խնդիր</th>
         <th>Մանրամասն</th>
       </tr>

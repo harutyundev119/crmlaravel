@@ -132,7 +132,7 @@
     <tbody>
 
       <tr>
-        <td> <input  type="checkbox" name="{{ $product->id}}" value="{{ $product->id}}"></td>
+        <td> <input  type="checkbox" name="id{{ $product->id}}" value="{{ $product->id}}"></td>
         <td>{{ $product->state }}</td>
         <td>{{ $product->region }}</td>
         <td>{{ $product->street }}</td>
