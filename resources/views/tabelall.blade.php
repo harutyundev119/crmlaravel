@@ -42,14 +42,14 @@
     </header>
     <!--header end-->
   
-    <aside>
+           <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">   Անուն {{ ucfirst(Auth()->user()->name) }}
             <br>
-                    Պաշտոն {{ ucfirst(Auth()->user()->position) }}</h5>
+                    Պաշտոն {{ ucfirst(Auth()->user()->group) }}</h5>
          @if ( ucfirst(Auth()->user()->group) == "Ներտնային սպասարկող")
                           
                                         @verbatim
@@ -80,10 +80,10 @@
           </li>
            <li class="mt">
             <a href="/data">
-              <i class="fa fa-dashboard"> Հայտեր Բաժանում</i>
-             
+              <i class="fa fa-dashboard"> Հայտեր Բաժանում</i> 
               </a>
-          </li>          
+          </li>       
+  
                 @endverbatim
                       @else
           <li class="mt">
@@ -98,11 +98,15 @@
               <i class="fa fa-dashboard"> Գրանցված Հայտեր</i> 
             </a>
           </li>
+           <li class="mt">
+            <a href="/օtherquestions">
+              <i class="fa fa-dashboard">Այլ հարցեր</i> 
+            </a>
+          </li>
                       @endif
-               
-                  <!-- sidebar menu end-->
       </div>
     </aside>
+ 
  
     <!--main content start-->
     <section id="main-content">
@@ -209,22 +213,3 @@ $(document).ready(function(){
 
 
 
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-
-
-</body>
-</html>

@@ -20,7 +20,10 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
-
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +42,7 @@
     </header>
     <!--header end-->
   
-    <aside>
+     <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
@@ -108,85 +111,63 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h1>Բաժանորդի տվյալներ</h1>
-        <form  id="carform" action="{{url('insert-update-problem')}}" method="post">
-              {{ csrf_field() }}
-            @foreach($applications as $application)
+           <div class="container">
+  <input class="form-control"  id="myInput" type="text" >
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>  
+    
+   <form id="carform" action="{{url('insert-engineer-problem')}}" method="post" >
+     {{ csrf_field() }}
+      <tr>
+        <th>Անուն Ազգանուն</th>
+        <th>Որ կազմակերպությունից են զանգել</th>
+        <th>Ինչ հարցով</th>
+        <th>Գրանցող</th>
+        <th>գրամցման ժամ</th>
+        <th>Կարգավիճակ</th>
+      </tr>
+    </thead>
+      @foreach($infos as $info)
+    <tbody>
 
-             <input type="hidden" class="form-control"  name="id" value="{{ $application->id }}" readonly>
-            Մարզ<input type="text" class="form-control"  name="" value="{{ $application->state }}" readonly>
-            Համայնք<input type="text" class="form-control"  name="" value="{{ $application->region }}" readonly>
-            Փողոց<input type="text" class="form-control"  name="" value="{{ $application->street }}" readonly>
-            Բնակարան/Տուն<input type="text" class="form-control"  name="" value="{{ $application->apartment }}" readonly>
-            Հեռախոս<input type="text" class="form-control"  name="" value="{{ $application->phone }}" readonly>
-            Մեկնաբանություն
-            <textarea rows="4" class="form-control"  cols="50" name="" placeholder="{{ $application->problem}}" readonly></textarea>
-            @endforeach
-            <hr>
-            <input type="hidden" class="form-control"  name="username" value="{{ ucfirst(Auth()->user()->name) }}" readonly>  
+      <tr>
+        
+        <td>{{ $info->name }}</td>
+        <td>{{ $info->campnineam }}</td>
+        <td>{{ $info->whoproblem }}</td>
+        <td>{{ $info->registrar}}</td>
+        <td>{{ $info->date }}</td>
+        <td>{{ $info->status }}</td>
+        
+        
+      </tr>
+ 
+                      
+         
+  @endforeach 
+     
+       
+    </thead>   
+</div>
 
-            <input style="display: none;" type="text" class="form-control" id="coment"  name="comments" value="{{ $application->comment}}" id="coment1" readonly>
-            
-            <div id="histore">
-                
-
-                  <script>
-                              var monthString = document.getElementById("coment").value;
-                              var text = monthString.split("##");
-                              var lengr = text.length-2;
-                              var i;
-                              for (var i = 0 ; i <lengr; i++) {
-                                  let p = document.createElement('p');  
-                               document.write("<p>"+text[i]+"</p>");
-                            }
-                        </script>
-
-            </div>
-
-            <textarea id="comment2" rows="4" class="form-control"  cols="50" name="comment" placeholder="Մեկնաբանություն"  required></textarea>
-            
-
-
-            <script type="text/javascript">
-               
-
-              
-                function start(){
-
-                x = document.getElementById("coment1").value
-                y= document.getElementById("coment2").value
-                document.getElementById("comment2").innerHTML = x
-
-                        }
-
-
-            </script>
-
-
-
-
-
-
-
-
-            <label   for="status" required> Կարգավիճակ:</label>
-                    <select id="status" name="status" form="carform">
-                      <option value="Կարգավորված է">Կարգավորված է</option>
-                      <option value="Կարգավորված չէ">Կարգավորված չէ</option>
-                      <option value="Մոտենալ հետո">Մոտենալ հետո</option>
-                       <option value="Տանը չի եղել">Տանը չի եղել</option>
-                       <option value="Զանգին չի պատասխանել">Զանգին չի պատասխանել</option>
-                    </select>
-             <input onclick="comment2" class="form-control" type="submit" name="injiner" value="Փողել կարգավիճակը">
-        </form>
-           
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
       </section>
       <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
     <!--footer start-->
- <!--    <footer class="site-footer">
+   <!--  <footer class="site-footer">
     
     </footer> -->
     <!--footer end-->
@@ -204,6 +185,18 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

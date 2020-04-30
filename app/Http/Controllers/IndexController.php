@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Session;
 use DB;
 Use App\User;
+Use App\Օtherquestions;
 use App\Applicationall;
+use App\Newsubscriber;
 
 class IndexController extends Controller
 {
@@ -126,6 +128,80 @@ class IndexController extends Controller
  
 
         return view('tabel', ['products'=>$products]);
+    }
+
+    public function insertotherquestions(Request $request) {
+     
+              $name = $request->input('name');
+              $campnineam = $request->input('campnineam');
+              $whoproblem = $request->input('whoproblem');
+              $date = date("Y.m.d h:i:sa");
+
+              $mane=ucfirst(Auth()->user()->name);
+              $whom=$request->input('whom');
+
+
+        $data=array('name'=>$name,
+                    'status'=>'Նոր հայտ',
+                    'campnineam'=>$campnineam,
+                    'whoproblem'=>$whoproblem,
+                    'whom'=>$whom,
+                    'registrar'=>$mane,
+                    'status'=>'նոր նամակ',
+                    'date'=>$date,);
+
+         DB::table('օtherquestions')->insert($data);
+
+        return redirect()->intended('dashboard');
+
+    }
+    public function showօtherquestions(Request $request) {
+     
+            $infos = Օtherquestions::all();
+
+
+           
+            return view('otherquestions', ['infos'=>$infos]);
+        
+    }
+
+     public function insertnewavailable(Request $request){
+              $state = $request->input('state');
+              $region = $request->input('region');
+              $street = $request->input('street');
+              $apartment = $request->input('apartment');
+              $phone = $request->input('phone');
+              $meknabanutyun = $request->input('meknabanutyun');
+              $date = date("Y.m.d h:i:sa");
+              $mane=ucfirst(Auth()->user()->name);
+              $shenq=$request->input('shenq');
+              $available=$request->input('available');
+        $data=array('problemothercomment'=>'test',
+                    'status'=>'Նոր Բաժանորդ',
+                    'group'=>'Ներտնային սպասարկեող',
+                    'manwork'=>'անայտաշխատակից',
+                    'comment'=>'test',
+                    'phone'=>$phone,
+                    'apartment'=>$apartment,
+                    'userid'=>'test',
+                    'region'=>$region,
+                    'street'=>$street,
+                    'adddate'=>$date,
+                    'state'=>$state,
+                    'cratmane'=>$mane,
+                    'problem'=>$meknabanutyun, 
+                    'building'=>$shenq,
+                    'available'=> $available);
+        print_r($data);
+
+         DB::table('Newsubscriber')->insert($data);
+        
+
+         
+        return redirect()->intended('date');
+
+         // return view('tabel', ['products'=>$products]);
+      
     }
 
 }

@@ -39,7 +39,7 @@
     </header>
     <!--header end-->
   
-    <aside>
+       <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
@@ -77,10 +77,10 @@
           </li>
            <li class="mt">
             <a href="/data">
-              <i class="fa fa-dashboard"> Հայտեր Բաժանում</i>
-             
+              <i class="fa fa-dashboard"> Հայտեր Բաժանում</i> 
               </a>
-          </li>          
+          </li>       
+  
                 @endverbatim
                       @else
           <li class="mt">
@@ -93,6 +93,11 @@
           <li class="mt">
             <a href="/date">
               <i class="fa fa-dashboard"> Գրանցված Հայտեր</i> 
+            </a>
+          </li>
+           <li class="mt">
+            <a href="/օtherquestions">
+              <i class="fa fa-dashboard">Այլ հարցեր</i> 
             </a>
           </li>
                       @endif

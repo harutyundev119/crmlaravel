@@ -39,7 +39,7 @@
     </header>
     <!--header end-->
   
-    <aside>
+        <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
@@ -77,10 +77,10 @@
           </li>
            <li class="mt">
             <a href="/data">
-              <i class="fa fa-dashboard"> Հայտեր Բաժանում</i>
-             
+              <i class="fa fa-dashboard"> Հայտեր Բաժանում</i> 
               </a>
-          </li>          
+          </li>       
+  
                 @endverbatim
                       @else
           <li class="mt">
@@ -95,9 +95,15 @@
               <i class="fa fa-dashboard"> Գրանցված Հայտեր</i> 
             </a>
           </li>
+           <li class="mt">
+            <a href="/օtherquestions">
+              <i class="fa fa-dashboard">Այլ հարցեր</i> 
+            </a>
+          </li>
                       @endif
       </div>
     </aside>
+ 
  
     <!--main content start-->
     <section id="main-content">
@@ -110,7 +116,7 @@
 
               <div class="container">
   <div class="row">
-    <div class="col-sm-12"><button onclick="quetion()"  class="btn-success">Այո</button><button style="margin-left: 10px;" class="btn-success">Ոչ</button></div>
+    <div class="col-sm-12"><button onclick="quetion()"  class="btn-success">Այո</button><button onclick="qayl3()" style="margin-left: 10px;" class="btn-success">Ոչ</button></div>
    
   </div>
 </div>
@@ -138,6 +144,22 @@
             document.getElementById("qayl2").style.display="none";
 
           }
+          function qayl3(){
+           document.getElementById("qayl3").style.display="block";
+            document.getElementById("question").style.display="none";
+
+          }
+           function qayl4(){
+           document.getElementById("qayl4").style.display="block";
+            document.getElementById("qayl3").style.display="none";
+
+          }
+
+           function qayl5(){
+           document.getElementById("qayl5").style.display="block";
+            document.getElementById("qayl3").style.display="none";
+
+          }
 
 
 
@@ -145,7 +167,7 @@
          </script>
 
 
-<div id="hayt" style="display: none">
+     <div id="hayt" style="display: none">
         <h1>Գրանցել նոր հայտ</h1>
              <form action="{{url('insert-new-problem')}}" method="POST" id="logForm">
  
@@ -191,15 +213,141 @@
             </section>
           </div>
         </div>
+              
+                   <div class="row" id="qayl3" style="display: none;">
+                        <div class="col-sm-6"><button onclick="qayl5()" id="save" class="btn-success"><h2>Ցանկանում եք բաժանորդագրվել</h2></button></div>
+                        <div class="col-sm-6"><button onclick="qayl4()" id="addnew" class="btn-success"><h2>Այլ Հարցերով</h2></button></div>
+                      </div>
+                    </div>
+
+
+
+
+
+       
+
+                    <div class="row" on id="qayl4" style="display: none; width: 75%;margin-left: 30px;">
+                       
+                        <h1>Գրանցել այլ հարց</h1>
+             <form  id="whom" action="{{url('insert-new-questions')}}" method="POST" >
+ 
+                 {{ csrf_field() }}
+ 
+
+                   <div class="form-label-group">
+                  <input type="hidden" name="mane" value="{{url('insert-new-questions')}}">
+               
+                </div> 
+
+                <div class="form-label-group">
+                  <input type="text" name="name" id="inputEmail" class="form-control" placeholder="Անուն Ազգանուն" >
+                  <label for="inputEmail">Անուն Ազգանուն</label>
+                </div> 
+                <div class="form-label-group">
+                  <input type="text" name="campnineam" id="inputEmail" class="form-control" placeholder="Որտեղից են զանգում (կազմակերպություն)" >
+                  <label for="inputEmail">Որտեղից են զանգում</label>
+                </div> 
+                <div class="form-label-group">
+                  <input type="text" name="whoproblem" id="inputEmail" class="form-control" placeholder="Ինչ հարցով" >
+                  <label for="inputEmail">Ինչ հարցով</label>
+                </div> 
+                <label for="whom">Ում</label>
+                    <select id="whom" name="whom" form="whom">
+                      <option value="Տնօրինություն">Տնօրինություն</option>
+                      <option value="Տեխնիկական">Տեխնիկական</option>
+                      <option value="Իրավաբան">Իրավաբան</option>
+                    </select>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Գրանցել հայտ</button>
+              </form>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="row" on id="qayl5" style="display: none; width: 75%;margin-left: 30px;">
+                       
+                        <h1>Նոր Բաժանորդ</h1>
+            
+                     <form action="{{url('insert-new-available')}}" method="POST" id="logForm">
+ 
+                 {{ csrf_field() }}
+ 
+
+                   <div class="form-label-group">
+                  <input type="hidden" name="mane" value="{{url('insert-new-problem')}}">
+               
+                </div> 
+
+                <div class="form-label-group">
+                  <input type="text" name="state" id="inputEmail" class="form-control" placeholder="Մարզ" >
+                  <label for="inputEmail">Մարզ</label>
+                </div> 
+                <div class="form-label-group">
+                  <input type="text" name="region" id="inputEmail" class="form-control" placeholder="Համայնք" >
+                  <label for="inputEmail">Համայնք</label>
+                </div> 
+                <div class="form-label-group">
+                  <input type="text" name="street" id="inputEmail" class="form-control" placeholder="Փողոց" >
+                  <label for="inputEmail">Փողոց</label>
+                </div> 
+                 <div class="form-label-group">
+                  <input type="text" name="shenq" id="inputEmail" class="form-control" placeholder="Շենք" >
+                  <label for="inputEmail">Շենք</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="text" name="apartment" id="inputEmail" class="form-control" placeholder="Բնակարան" >
+                  <label for="inputEmail">Բնակարան/Տուն</label>
+                </div> 
+                <div class="form-label-group">
+                  <input type="Namber" name="phone" id="inputEmail" class="form-control" placeholder="Բջջային" >
+                  <label for="inputEmail">Բջջային</label>
+                </div> 
+                 <div class="form-label-group">
+                  <input type="text" name="meknabanutyun" id="inputEmail" class="form-control" placeholder="Մեկնաբանություն" >
+                  <label for="inputEmail">Մեկնաբանություն</label>
+                </div> 
+
+
+                <input type="radio" id="male" name="available" value="Հասանելի">
+                <label for="male">Հասանելի</label><br>
+                <input type="radio" id="female" name="available" value="Ոչ հասանելի">
+                <label for="female">Ոչ հասանելի</label><br>
+
+
+
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Գրանցել նոր բաժանորդին</button>
+
+              </form>
+                      </div>
+                    </div>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </section>
       <!-- /wrapper -->
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
     <!--footer start-->
-    <footer class="site-footer">
+    <!-- <footer class="site-footer">
     
-    </footer>
+    </footer> -->
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
